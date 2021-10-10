@@ -16,6 +16,7 @@ order by 1,2
 
 
 -- 1.2. includes "International"  Location
+-- to double check if the numbers consistency
 
 Select SUM(new_cases) as total_cases, SUM(cast(new_deaths as int)) as total_deaths, SUM(cast(new_deaths as int))/SUM(New_Cases)*100 as DeathPercentage
 From ['covid_deaths']
@@ -56,7 +57,7 @@ order by PercentPopulationInfected desc
 
 Select dea.continent, dea.location, dea.date, dea.population
 , MAX(vac.total_vaccinations) as RollingPeopleVaccinated
---, (RollingPeopleVaccinated/population)*100
+, (RollingPeopleVaccinated/population)*100
 From ['covid_deaths'] dea
 Join ['covid_vaccination'] vac
 	On dea.location = vac.location
